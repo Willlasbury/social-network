@@ -60,4 +60,4 @@ const updateUser = async (req, res) => {
   }
 };
 
-module.exports = { getUsers, createUser, deleteUser, updateUser };
+module.exports = { getUsers, getOneUser, createUser, deleteUser, updateUser };

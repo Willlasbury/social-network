@@ -8,6 +8,6 @@ routes
 
 routes.route("/delete/:id").delete(thoughts.deleteThought)
 
-routes.route("/:id").put(thoughts.updateThought)
+routes.route("/:id").get(thoughts.getOneThought).put(thoughts.updateThought)
 
 module.exports = routes;

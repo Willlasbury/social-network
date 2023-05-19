@@ -10,6 +10,17 @@ const getThoughts = async (req, res) => {
   }
 };
 
+const getOneThought = async (req, res) => {
+  try {
+    const id = req.params.id
+    const data = await Thought.findById(id);
+    return res.json(data);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ msg: "some error", err: err });
+  }
+};
+
 const createThought = async (req, res) => {
   try {
     const newThought = {
@@ -49,4 +60,4 @@ const updateThought = async (req, res) => {
    }
 }
 
-module.exports = { getThoughts, createThought, deleteThought, updateThought };
+module.exports = { getThoughts, getOneThought, createThought, deleteThought, updateThought };
