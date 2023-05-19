@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
-const dayJs = require('dayjs')
+const dayJs = require('dayjs');
+const { Thought } = require(".");
 
 // Schema to create User model
 const thoughtSchema = new Schema({
@@ -24,6 +25,6 @@ const thoughtSchema = new Schema({
 });
 
 // Initialize our User model
-const User = model("user", thoughtSchema);
+const Thoughts = model("thought", thoughtSchema);
 
-module.exports = User;
+module.exports = Thoughts;

@@ -7,7 +7,7 @@ const userSchema = new Schema({
     type: String,
     unique: true,
     required: true,
-    validate: [isEmail, "invalid email"],
+    match: /^.+@.+\..+/,
   },
   thoughts: {
     type: Schema.Types.ObjectId,
@@ -20,6 +20,6 @@ const userSchema = new Schema({
 });
 
 // Initialize our User model
-const User = model("user", userSchema);
+const Users = model("user", userSchema);
 
-module.exports = User;
+module.exports = Users;
