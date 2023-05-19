@@ -1,6 +1,7 @@
-const routes = require("express").Router();
-const userRoutes = require("../controller/index").userMethods;
+const router = require("express").Router();
+const userRoutes = require("./users")
 
-routes.route("/users").get(userRoutes.getUsers).post(userRoutes.createUser);
+router.use("/users", userRoutes)
+  
 
-module.exports = routes;
+module.exports = router;

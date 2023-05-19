@@ -1,8 +1,8 @@
-const { User } = require("../models");
+const User = require("../models").Users;
 
 const getUsers = async (req, res) => {
   try {
-    const data = User.find();
+    const data = await User.find();
     return res.json(data);
   } catch (err) {
     console.log(err);
@@ -10,15 +10,13 @@ const getUsers = async (req, res) => {
   }
 };
 
-const createUser = (req, res) => {
+const createUser = async (req, res) => {
   try {
     const newUser = {
       userName: req.body.userName,
       email: req.body.email,
-      thoughts: req.body.thoughts,
-      friends: req.body.friends,
     };
-    const data = User.create(newUser);
+    const data = await User.create(newUser);
 
     return res.json(data);
   } catch (err) {
@@ -27,4 +25,16 @@ const createUser = (req, res) => {
   }
 };
 
-module.exports = {getUsers, createUser}
+const deleteUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log("id:", id)
+    const data = await User.deleteOne({ _id: id });
+    return res.json(data);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ msg: "some error", err: err });
+  }
+};
+
+module.exports = { getUsers, createUser, deleteUser };
