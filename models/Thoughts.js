@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
-const dayJs = require('dayjs');
-const { Thought } = require(".");
+const dayJs = require("dayjs");
+const Reaction = require("./Reaction");
 
 // Schema to create User model
 const thoughtSchema = new Schema({
@@ -9,19 +9,17 @@ const thoughtSchema = new Schema({
     unique: true,
     required: true,
     maxlength: 120,
-    minlength: 1
+    minlength: 1,
   },
   createdAt: {
     type: Date,
-    default: dayJs().format()
+    default: dayJs().format(),
   },
   userName: {
     type: String,
     required: true,
   },
-  reactions: {
-    // TODO:  array of nested documents created with the reactionSchema
-  }
+  reactions: [Reaction],
 });
 
 // Initialize our User model
