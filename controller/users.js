@@ -40,8 +40,8 @@ const deleteUser = async (req, res) => {
 const updateUser = async (req, res) => {
    try{
     const id = req.params.id
-    User.updateOne({_id:id}, {$set: { "userName" : req.body.userName}})
-   
+    const data = await User.updateOne({_id:id}, {$set: { "userName" : req.body.userName}})
+    return res.json(data)
    
    } catch (err){
     console.log(err);
