@@ -10,6 +10,17 @@ const getUsers = async (req, res) => {
   }
 };
 
+const getOneUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await User.findById(id);
+    return res.json(data);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ msg: "some error", err: err });
+  }
+};
+
 const createUser = async (req, res) => {
   try {
     const newUser = {
@@ -28,7 +39,7 @@ const createUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const id = req.params.id;
-    console.log("id:", id)
+    console.log("id:", id);
     const data = await User.deleteOne({ _id: id });
     return res.json(data);
   } catch (err) {
@@ -38,15 +49,15 @@ const deleteUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-   try{
-    const id = req.params.id
-    const data = await User.updateOne({_id:id}, {$set: { "userName" : req.body.userName}})
-    return res.json(data)
-   
-   } catch (err){
+  try {
+    const id = req.params.id;
+    const updateUser = { userName: req.body.userName };
+    const data = await User.updateOne({ _id: id }, { $set: updateUser });
+    return res.json(data);
+  } catch (err) {
     console.log(err);
-    return res.status(500).json({msg:'some error', err:err})
-   }
-}
+    return res.status(500).json({ msg: "some error", err: err });
+  }
+};
 
 module.exports = { getUsers, createUser, deleteUser, updateUser };

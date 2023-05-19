@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const dayJs = require('dayjs')
 
 // Schema to create User model
-const reactionSchema = new Schema({
+const Reactions = new Schema({
   reactionBody: {
     type: String,
     required: true,
@@ -23,7 +23,5 @@ const reactionSchema = new Schema({
   },
 });
 
-// Initialize our User model
-const Reactions = model("reaction", reactionSchema);
 
 module.exports = Reactions;
