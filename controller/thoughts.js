@@ -40,8 +40,8 @@ const deleteThought = async (req, res) => {
 const updateThought = async (req, res) => {
    try{
     const id = req.params.id
-    Thought.updateOne({_id:id}, {$set: { "thoughtText" : req.body.thoughtText}})
-   
+    const data = await Thought.updateOne({_id:id}, {$set: { "thoughtText" : req.body.thoughtText}})
+   return res.json(data)
    
    } catch (err){
     console.log(err);
