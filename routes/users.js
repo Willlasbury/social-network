@@ -8,4 +8,6 @@ routes
 
 routes.route("/delete/:id").delete(user.deleteUser)
 
+routes.route("/:id").put(user.updateUser)
+
 module.exports = routes;

@@ -1,8 +1,8 @@
-const User = require("../models").Users;
+const Thought = require("../models").Thoughts;
 
-const getUsers = async (req, res) => {
+const getThoughts = async (req, res) => {
   try {
-    const data = await User.find();
+    const data = await Thought.find();
     return res.json(data);
   } catch (err) {
     console.log(err);
@@ -10,13 +10,13 @@ const getUsers = async (req, res) => {
   }
 };
 
-const createUser = async (req, res) => {
+const createThought = async (req, res) => {
   try {
-    const newUser = {
-      userName: req.body.userName,
-      email: req.body.email,
+    const newThought = {
+      thoughtText: req.body.thoughtText,
+      userName: req.body.userName
     };
-    const data = await User.create(newUser);
+    const data = await Thought.create(newThought);
 
     return res.json(data);
   } catch (err) {
@@ -25,11 +25,11 @@ const createUser = async (req, res) => {
   }
 };
 
-const deleteUser = async (req, res) => {
+const deleteThought = async (req, res) => {
   try {
     const id = req.params.id;
     console.log("id:", id)
-    const data = await User.deleteOne({ _id: id });
+    const data = await Thought.deleteOne({ _id: id });
     return res.json(data);
   } catch (err) {
     console.log(err);
@@ -37,10 +37,10 @@ const deleteUser = async (req, res) => {
   }
 };
 
-const updateUser = async (req, res) => {
+const updateThought = async (req, res) => {
    try{
     const id = req.params.id
-    User.updateOne({_id:id}, {$set: { "userName" : req.body.userName}})
+    Thought.updateOne({_id:id}, {$set: { "thoughtText" : req.body.thoughtText}})
    
    
    } catch (err){
@@ -49,4 +49,4 @@ const updateUser = async (req, res) => {
    }
 }
 
-module.exports = { getUsers, createUser, deleteUser, updateUser };
+module.exports = { getThoughts, createThought, deleteThought, updateThought };
