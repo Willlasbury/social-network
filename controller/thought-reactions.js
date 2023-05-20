@@ -1,4 +1,3 @@
-const { MongoClient, ObjectId } = require("mongodb");
 const Thought = require("../models").Thoughts;
 
 const updateReaction = async (req, res) => {
