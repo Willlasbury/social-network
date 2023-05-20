@@ -6,7 +6,6 @@ const Reaction = require("./Reaction");
 const thoughtSchema = new Schema({
   thoughtText: {
     type: String,
-    unique: true,
     required: true,
     maxlength: 120,
     minlength: 1,
