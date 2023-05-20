@@ -13,9 +13,8 @@ const updateReaction = async (req, res) => {
     const thought = await Thought.updateOne(
       { _id: thoughtId },
       { $push: { reactions: newReaction } },
-      {new:true}
+      { new: true }
     );
-    
 
     return res.json(thought);
   } catch (err) {
@@ -28,13 +27,14 @@ const deleteReaction = async (req, res) => {
   try {
     const thoughtId = req.params.thoughtId;
     const reactionId = req.params.reactionId;
+    console.log("reactionId:", reactionId);
 
     const data = await Thought.findOneAndUpdate(
       { _id: thoughtId },
-      { $pull: { reaction: reactionId } },
+      { $pull: { reactions: { _id: reactionId } } },
       { new: true }
     );
-    console.log("data:", data);
+
     return res.json(data);
   } catch (err) {
     console.log(err);
