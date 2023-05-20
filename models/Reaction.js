@@ -4,10 +4,6 @@ const { ObjectId } = require("mongodb");
 
 // Schema to create User model
 const Reactions = new Schema({
-  // id: {
-  //   type: Schema.Types.ObjectId,
-  //   default: () => new Types.ObjectId(),
-  // },
   reactionBody: {
     type: String,
     required: true,
@@ -18,10 +14,10 @@ const Reactions = new Schema({
     type: String,
     required: true
   },
-  // createdAt: {
-  //   type: Date,
-  //   default: dayJs().format()
-  // },
+  createdAt: {
+    type: Date,
+    default: dayJs().format()
+  },
 });
 
 
